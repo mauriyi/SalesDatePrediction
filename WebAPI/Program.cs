@@ -12,7 +12,7 @@ builder.Services.AddSingleton<DbConnectionFactory>();
 
 // Register the repositories
 builder.Services.AddScoped<ICustomer, CustomerRepository>();
-
+builder.Services.AddScoped<IOrder, OrderRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
