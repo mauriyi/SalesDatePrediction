@@ -2,7 +2,7 @@
 {
     public class Shipper
     {
-        public int ShipperId { get; set; }
-        public string CompanyName { get; set; }
+        public int Shipperid { get; set; }
+        public string Companyname { get; set; }
     }
 }
