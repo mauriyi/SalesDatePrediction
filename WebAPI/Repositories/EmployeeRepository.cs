@@ -35,7 +35,7 @@ namespace WebAPI.Repositories
                         {
                             employees.Add(new Employee
                             {
-                                EmployeeId = reader.GetInt32(0),
+                                Empid = reader.GetInt32(0),
                                 FullName = reader.GetString(1)
                             });
                         }
