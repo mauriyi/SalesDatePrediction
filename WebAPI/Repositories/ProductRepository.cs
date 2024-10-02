@@ -35,8 +35,8 @@ namespace WebAPI.Repositories
                         {
                             products.Add(new Product
                             {
-                                ProductId = reader.GetInt32(0),
-                                ProductName = reader.GetString(1)
+                                Productid = reader.GetInt32(0),
+                                Productname = reader.GetString(1)
                             });
                         }
                     }
