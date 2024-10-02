@@ -15,6 +15,7 @@ builder.Services.AddScoped<ICustomer, CustomerRepository>();
 builder.Services.AddScoped<IOrder, OrderRepository>();
 builder.Services.AddScoped<IEmployee, EmployeeRepository>();
 builder.Services.AddScoped<IProduct, ProductRepository>();
+builder.Services.AddScoped<IShipper, ShipperRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
