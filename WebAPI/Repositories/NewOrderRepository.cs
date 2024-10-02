@@ -33,7 +33,7 @@ namespace WebAPI.Repositories
                     {
                         string insertOrderQuery = @"
                     INSERT INTO Sales.Orders (empid, custid, shipperid, shipname, shipaddress, shipcity, orderdate, requireddate, shippeddate, freight, shipcountry)
-                    VALUES (@EmpId, @CustId, @ShipperId, @ShipName, @ShipAddress, @ShipCity, GETDATE(), @RequiredDate, @ShippedDate, @Freight, @ShipCountry);
+                    VALUES (@EmpId, @CustId, @ShipperId, @ShipName, @ShipAddress, @ShipCity, @Orderdate, @RequiredDate, @ShippedDate, @Freight, @ShipCountry);
                     SELECT SCOPE_IDENTITY();"; // ID de la orden recién creada
 
                         using (var command = new SqlCommand(insertOrderQuery, connection, transaction))
@@ -44,6 +44,7 @@ namespace WebAPI.Repositories
                             command.Parameters.AddWithValue("@ShipName", order.ShipName);
                             command.Parameters.AddWithValue("@ShipAddress", order.ShipAddress);
                             command.Parameters.AddWithValue("@ShipCity", order.ShipCity);
+                            command.Parameters.AddWithValue("@Orderdate", order.Orderdate);
                             command.Parameters.AddWithValue("@RequiredDate", order.RequiredDate);
                             command.Parameters.AddWithValue("@ShippedDate", order.ShippedDate ?? (object)DBNull.Value);
                             command.Parameters.AddWithValue("@Freight", order.Freight);

@@ -8,6 +8,7 @@
         public string ShipName { get; set; }
         public string ShipAddress { get; set; }
         public string ShipCity { get; set; }
+        public DateTime Orderdate { get; set; }
         public DateTime RequiredDate { get; set; }
         public DateTime? ShippedDate { get; set; }
         public decimal Freight { get; set; }
