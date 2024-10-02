@@ -1,5 +1,6 @@
 ﻿using System.Data.SqlClient;
 using WebAPI.Data;
+using WebAPI.Models;
 using WebAPI.Services;
 
 namespace WebAPI.Repositories

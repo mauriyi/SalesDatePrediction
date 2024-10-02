@@ -1,4 +1,4 @@
-﻿using WebAPI.Data;
+﻿using WebAPI.Models;
 
 namespace WebAPI.Services
 {
