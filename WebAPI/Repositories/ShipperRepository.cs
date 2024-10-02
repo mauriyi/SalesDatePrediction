@@ -35,7 +35,7 @@ namespace WebAPI.Repositories
                         {
                             shippers.Add(new Shipper
                             {
-                                shipperid = reader.GetInt32(0),
+                                Shipperid = reader.GetInt32(0),
                                 Companyname = reader.GetString(1)
                             });
                         }
