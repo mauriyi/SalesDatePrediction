@@ -20,3 +20,21 @@
 .margin-bottom {
   margin-bottom: 16px; /* Espacio entre campos */
 }
+
+.card-header {
+  background-color: #4C9950; // Set the background to green
+  color: white; // Set the text color to white
+}
+
+.green-button {
+  color: #4C9950; // Set the text color to green
+}
+
+mat-form-field,
+mat-select,
+mat-input {
+  box-shadow: none !important;
+}
+mat-card {
+  box-shadow: none !important;
+}

@@ -12,6 +12,7 @@ import { CustomerService } from '../services/customer/customer.service';
 
 import { NewOrderComponent } from '../new-order/new-order.component';
 import { MatDialog } from '@angular/material/dialog';
+import { OrdersComponent } from '../orders/orders.component';
 
 @Component({
   selector: 'app-sales-date-prediction',
@@ -63,11 +64,17 @@ export class SalesDatePredictionComponent implements OnInit {
     // Implementation for opening a dialog
   }
 
-  viewOrders(): void {
-    // Implementar la lógica para ver pedidos
+  viewOrders(customer: any): void {
+    const dialogRef = this.dialog.open(OrdersComponent, {
+      data: { data: customer },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
-  newOrder(customer: Customer): void {
+  newOrder(customer: any): void {
     const dialogRef = this.dialog.open(NewOrderComponent, {
       data: { data: customer },
     });

@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NewOrderDto } from '../../models/newOrderDto';
+import { Order } from '../../models/order';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,9 @@ export class OrderService {
 
   constructor(private http: HttpClient) {}
 
-  // addNewOrder(order: NewOrderDto): Observable<any> {
-  //   return this.http.post(this.apiUrl, order);
-  // }
+  getOrders(idUser: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.apiUrl}GetClientOrders/${idUser}`);
+  }
 
   addNewOrder(orderData: NewOrderDto): Observable<number> {
     const headers = new HttpHeaders({
