@@ -8,7 +8,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 import { Customer } from '../models/customer';
-import { CustomerService } from '../services/customer.service';
+import { CustomerService } from '../services/customer/customer.service';
+
+import { NewOrderComponent } from '../new-order/new-order.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sales-date-prediction',
@@ -37,7 +40,7 @@ export class SalesDatePredictionComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private customerService: CustomerService) {}
+  constructor(private customerService: CustomerService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadCustomers(); // Cargar clientes inicialmente
@@ -64,7 +67,13 @@ export class SalesDatePredictionComponent implements OnInit {
     // Implementar la lógica para ver pedidos
   }
 
-  newOrder(): void {
-    // Implementar la lógica para crear un nuevo pedido
+  newOrder(customer: Customer): void {
+    const dialogRef = this.dialog.open(NewOrderComponent, {
+      data: { data: customer },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

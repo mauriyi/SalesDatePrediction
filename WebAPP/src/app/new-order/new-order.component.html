@@ -1,0 +1,131 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{customer.data.customerName}} - New Order</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <div formGroupName="order">
+        <!-- Título de la sección Order -->
+      <h3>Order</h3>
+        <!-- Primera fila: Employee y Shipper -->
+        <div class="flex-container">
+          <mat-form-field class="flex-item">
+            <mat-label>Employee</mat-label>
+            <mat-select formControlName="employee" required>
+              <mat-option *ngFor="let employee of employees" [value]="employee.empid">
+                {{ employee.fullName }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="orderForm.get('order.employee')?.invalid">Required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-item">
+            <mat-label>Shipper</mat-label>
+            <mat-select formControlName="shipper" required>
+              <mat-option *ngFor="let shipper of shippers" [value]="shipper.shipperid">
+                {{ shipper.companyname }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="orderForm.get('order.shipper')?.invalid">Required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Segunda fila: Ship Name -->
+        <mat-form-field class="full-width margin-bottom">
+          <mat-label>Ship Name</mat-label>
+          <input matInput formControlName="shipName" required />
+          <mat-error *ngIf="orderForm.get('order.shipName')?.invalid">Required</mat-error>
+        </mat-form-field>
+
+        <!-- Tercera fila: Ship Address, Ship City, Ship Country -->
+        <div class="flex-container">
+          <mat-form-field class="flex-item">
+            <mat-label>Ship Address</mat-label>
+            <input matInput formControlName="shipAddress" required />
+          </mat-form-field>
+
+          <mat-form-field class="flex-item">
+            <mat-label>Ship City</mat-label>
+            <input matInput formControlName="shipCity" required />
+          </mat-form-field>
+
+          <mat-form-field class="flex-item">
+            <mat-label>Ship Country</mat-label>
+            <input matInput formControlName="shipCountry" required />
+          </mat-form-field>
+        </div>
+
+        <!-- Cuarta fila: Order Date, Required Date, Shipped Date -->
+        <div class="flex-container">
+          <mat-form-field class="flex-item">
+            <mat-label>Order Date</mat-label>
+            <input matInput [matDatepicker]="orderDatePicker" formControlName="orderDate" required />
+            <mat-datepicker-toggle matSuffix [for]="orderDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #orderDatePicker></mat-datepicker>
+            <mat-error *ngIf="orderForm.get('order.orderDate')?.invalid">Required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-item">
+            <mat-label>Required Date</mat-label>
+            <input matInput [matDatepicker]="requiredDatePicker" formControlName="requiredDate" required />
+            <mat-datepicker-toggle matSuffix [for]="requiredDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #requiredDatePicker></mat-datepicker>
+            <mat-error *ngIf="orderForm.get('order.requiredDate')?.invalid">Required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="flex-item">
+            <mat-label>Shipped Date</mat-label>
+            <input matInput [matDatepicker]="shippedDatePicker" formControlName="shippedDate" required />
+            <mat-datepicker-toggle matSuffix [for]="shippedDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #shippedDatePicker></mat-datepicker>
+            <mat-error *ngIf="orderForm.get('order.shippedDate')?.invalid">Required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Quinta fila: Freight -->
+        <mat-form-field class="full-width margin-bottom">
+          <mat-label>Freight</mat-label>
+          <input matInput type="number" formControlName="freight" />
+        </mat-form-field>
+      </div>
+
+      <!-- Título de la sección Order Details-->
+      <h3>Order Details</h3>
+      <div formGroupName="orderDetails">
+        <mat-form-field class="full-width margin-bottom">
+          <mat-label>Product</mat-label>
+          <mat-select formControlName="product" required>
+            <mat-option *ngFor="let product of products" [value]="product.productid">
+              {{ product.productname }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="orderForm.get('orderDetails.product')?.invalid">Required</mat-error>
+        </mat-form-field>
+
+         <!-- Segunda fila: Ship Address, Ship City, Ship Country -->
+         <div class="flex-container">
+          <mat-form-field class="flex-item">
+            <mat-label>Unit Price</mat-label>
+            <input matInput type="number" formControlName="unitPrice" required />
+          </mat-form-field>
+
+          <mat-form-field class="flex-item">
+            <mat-label>Quantity</mat-label>
+          <input matInput type="number" formControlName="quantity" required />
+          </mat-form-field>
+
+          <mat-form-field class="flex-item">
+            <mat-label>Discount</mat-label>
+            <input matInput type="number" formControlName="discount" />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button type="submit" [disabled]="orderForm.invalid">Save</button>
+      <button mat-button type="button" (click)="onClose()">Close</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

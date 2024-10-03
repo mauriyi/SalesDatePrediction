@@ -1,0 +1,22 @@
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px; /* Espacio entre filas */
+}
+
+.flex-item {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.flex-item:last-child {
+  margin-right: 0; /* Elimina margen derecho del último elemento */
+}
+
+.full-width {
+  width: 100%;
+}
+
+.margin-bottom {
+  margin-bottom: 16px; /* Espacio entre campos */
+}
