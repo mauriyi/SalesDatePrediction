@@ -1,0 +1,22 @@
+<div *ngIf="customers.length > 0; else noData">
+  <table>
+    <thead>
+      <tr>
+        <th>Customer Name</th>
+        <th>Last Order Date</th>
+        <th>Next Predicted Order</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.customerName }}</td>
+        <td>{{ customer.lastOrderDate | date }}</td>
+        <td>{{ customer.nextPredictedOrder | date }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noData>
+  <p>No customers available.</p>
+</ng-template>
