@@ -1,22 +1,61 @@
-<div *ngIf="customers.length > 0; else noData">
-  <table>
-    <thead>
-      <tr>
-        <th>Customer Name</th>
-        <th>Last Order Date</th>
-        <th>Next Predicted Order</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let customer of customers">
-        <td>{{ customer.customerName }}</td>
-        <td>{{ customer.lastOrderDate | date }}</td>
-        <td>{{ customer.nextPredictedOrder | date }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<mat-card class="cardWithShadow">
+  <mat-card-header class="header-container">
+    <mat-card-title class="f-s-24 f-w-600">Customers</mat-card-title>
+    <div class="search-container">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Customer Name</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($any($event.target).value)"
+        />
+        <button mat-icon-button matSuffix>
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </mat-card-header>
 
-<ng-template #noData>
-  <p>No customers available.</p>
-</ng-template>
+  <mat-card-content class="p-24">
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" class="w-100">
+
+        <!-- Columna para el nombre del cliente -->
+        <ng-container matColumnDef="customerName">
+          <th mat-header-cell *matHeaderCellDef>Customer Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.customerName }}</td>
+        </ng-container>
+
+        <!-- Columna para la última fecha de pedido -->
+        <ng-container matColumnDef="lastOrderDate">
+          <th mat-header-cell *matHeaderCellDef>Last Order Date</th>
+          <td mat-cell *matCellDef="let element">{{ element.lastOrderDate | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+
+        <!-- Columna para la próxima fecha de pedido prevista -->
+        <ng-container matColumnDef="nextPredictedOrder">
+          <th mat-header-cell *matHeaderCellDef>Next Predicted Order</th>
+          <td mat-cell *matCellDef="let element">{{ element.nextPredictedOrder | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+
+        <!-- Columna de acciones -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button class="red-button" (click)="viewOrders()">VIEW ORDERS</button>
+            <button mat-button class="green-button" (click)="newOrder()">NEW ORDER</button>
+          </td>
+        </ng-container>
+
+        <!-- Filas del encabezado y del cuerpo de la tabla -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[10, 15, 30]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+

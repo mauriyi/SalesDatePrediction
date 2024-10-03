@@ -4,6 +4,6 @@ namespace WebAPI.Services
 {
     public interface ICustomer
     {
-        IEnumerable<Customer> SalesDatePrediction();
+        IEnumerable<Customer> SalesDatePrediction(string searchTerm);
     }
 }

@@ -1,0 +1,59 @@
+.cardWithShadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+table .red-button {
+  color: red; // Cambia el color del texto a rojo
+  font-weight: bold;
+
+  &:hover {
+    color: darkred; // Color al pasar el cursor
+  }
+}
+
+table .green-button {
+  color: green; // Cambia el color del texto a verde
+  font-weight: bold;
+
+  &:hover {
+    color: darkgreen; // Color al pasar el cursor
+  }
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between; // Espacio entre el título y el campo de búsqueda
+  align-items: center; // Centrar verticalmente
+}
+
+.search-container {
+  display: flex;
+  align-items: center; // Alinear verticalmente el campo de búsqueda
+}
+
+.search-field {
+  width: 300px; // Ajusta el ancho según sea necesario
+}
+
+.mat-form-field-underline {
+  display: none; // Ocultar la línea del borde por defecto
+}
+
+.mat-form-field {
+  &::after {
+    border-bottom: 1px solid gray; // Borde inferior
+    content: "";
+    display: block;
+    position: relative;
+    bottom: 0; // Ubicar el borde en la parte inferior
+  }
+}

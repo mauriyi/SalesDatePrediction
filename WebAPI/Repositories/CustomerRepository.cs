@@ -14,13 +14,15 @@ namespace WebAPI.Repositories
             _dbConnectionFactory = dbConnectionFactory;
         }
 
-        public IEnumerable<Customer> SalesDatePrediction()
+        public IEnumerable<Customer> SalesDatePrediction(string searchTerm = "")
         {
             var customerOrders = new List<Customer>();
 
             using (var connection = _dbConnectionFactory.CreateConnection())
             {
                 connection.Open();
+
+                // Modificar la consulta para filtrar por nombre de cliente
                 string query = @"
                     SELECT 
                         C.companyname AS CustomerName,
@@ -33,11 +35,15 @@ namespace WebAPI.Repositories
                     FROM Sales.Orders O
                     JOIN Sales.Customers C ON O.custid = C.custid
                     LEFT JOIN Sales.Orders O1 ON O.custid = O1.custid AND O1.orderdate < O.orderdate
+                    WHERE C.companyname LIKE @SearchTerm
                     GROUP BY C.companyname
                     ORDER BY NextPredictedOrder;";
 
                 using (var command = new SqlCommand(query, connection))
                 {
+                    // Añadir el parámetro de búsqueda
+                    command.Parameters.AddWithValue("@SearchTerm", $"%{searchTerm}%");
+
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())

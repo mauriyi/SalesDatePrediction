@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebAPI.Models;
 using WebAPI.Services;
 
 namespace WebAPI.Controllers
@@ -16,7 +15,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Customer>> SalesDatePrediction() => Ok(_customerOrder.SalesDatePrediction());
+        public IActionResult SalesDatePrediction(string search = "")
+        {
+            var customers = _customerOrder.SalesDatePrediction(search); 
+            return Ok(customers);
+        }
 
     }
 }

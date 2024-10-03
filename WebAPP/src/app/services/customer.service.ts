@@ -12,7 +12,12 @@ export class CustomerService {
 
   constructor(private http: HttpClient) {}
 
-  getSalesDatePrediction(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.apiUrl);
+  getSalesDatePrediction(searchTerm: string): Observable<Customer[]> {
+    if (searchTerm.trim() === '') {
+      // Si el término de búsqueda está vacío
+      return this.http.get<Customer[]>(`${this.apiUrl}`);
+    }
+    // Si hay un término de búsqueda, realiza la búsqueda
+    return this.http.get<Customer[]>(`${this.apiUrl}?search=${searchTerm}`);
   }
 }
