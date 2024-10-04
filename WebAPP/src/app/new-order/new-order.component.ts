@@ -84,16 +84,6 @@ export class NewOrderComponent implements OnInit {
       })
     });
 
-    // Observa los cambios en los valores del formulario
-  this.orderForm.valueChanges.subscribe(values => {
-    console.log('Current form values:', values);
-  });
-
-  // Observa el estado del formulario
-  this.orderForm.statusChanges.subscribe(status => {
-    console.log('Form status:', status);
-  });
-
       // Cargar las listas al iniciar
       this.loadEmployees();
       this.loadProducts();
@@ -134,6 +124,10 @@ export class NewOrderComponent implements OnInit {
   }
 
   onSubmit(): void {
+
+  }
+
+  createTransaction(): void {
     if (this.orderForm.valid) {
       const orderData: NewOrderDto = {
         empId: this.orderForm.value.order.employee,

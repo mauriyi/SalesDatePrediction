@@ -126,6 +126,6 @@
   </mat-dialog-content>
 
   <mat-card-actions align="end">
-    <button mat-button type="submit" [disabled]="orderForm.invalid" class="green-button">Save</button>
+    <button mat-button type="submit" [disabled]="orderForm.invalid" (click)="createTransaction()" class="green-button">Save</button>
     <button mat-button type="button" (click)="onClose()" class="green-button">Close</button>
   </mat-card-actions>
